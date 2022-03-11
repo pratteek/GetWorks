@@ -9,6 +9,15 @@ class JobService{
     getJob(){
         return axios.get(JOB_API_BASE_URL);
     }
+    deleteJob(id){
+        return axios.delete(JOB_API_BASE_URL+"/"+ id);
+    }
+    getJobById(id){
+        return axios.get(JOB_API_BASE_URL+"/"+id);
+    }
+    updateJob(id,job){
+        return axios.put(JOB_API_BASE_URL+"/"+id,job);
+    }
 }
 
 export default new JobService();

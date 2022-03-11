@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 import JobService from '../services/JobService';
-import {BsFillPencilFill} from 'react-icons/bs';
+import {BsFillPencilFill , BsFillTrashFill} from 'react-icons/bs';
 
 const JobList = () => {
     const navigate = useNavigate();
@@ -21,6 +21,27 @@ const JobList = () => {
         };
         fetchData();
     }, [])
+
+    const editJob = (e,id) => {
+        e.preventDefault();
+        navigate(`/editjob/${id}`);
+    }
+
+    const deleteJob = (e,id) =>{
+        e.preventDefault();
+        JobService.deleteJob(id)
+            .then((response)=>{
+                if(jobs){
+                    setjobs((prevElement)=>{
+                        return prevElement.filter((job)=> job.id!==id)
+                    });
+                }
+                console.log(response);
+            })
+            .catch((error)=>{
+                console.log(error);
+            })
+    }
     return (
         <div className="container mx-auto my-8">
             <div className="h-12 mb-2">
@@ -45,7 +66,9 @@ const JobList = () => {
                             <td className="text-left px-6 py-4 whitespace-nowrap">{job.company}</td>
                             <td className="text-left px-6 py-4 whitespace-nowrap">{job.position}</td>
                             <td className="text-left px-6 py-4 whitespace-nowrap"><a href={"https://"+job.url} target="_blank" rel="noreferrer noopener">{job.url}</a></td>
-                            <td className="right-0 px-6 py-4 whitespace-nowrap"><BsFillPencilFill /></td>
+                            <td className="right-0 px-6 py-4 whitespace-nowrap">
+                                <div className="flex space-x-12"><BsFillPencilFill onClick={(e,id)=>{editJob(e,job.id)}} className="cursor-pointer" /> <BsFillTrashFill className="cursor-pointer" onClick={(e,id)=>{ deleteJob(e,job.id)}} /></div>
+                            </td>
                         </tr>
                     ))}
                     </tbody>
