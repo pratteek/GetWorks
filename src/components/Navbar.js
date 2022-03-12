@@ -7,7 +7,6 @@ const Navbar = () => {
     <div className="bg-gray-700">
       <div className="h-16 px-8 flex items-center">
         <p onClick={(e)=> navigate('/')} className="text-white font-bold cursor-pointer ">GetWorks</p>
-        
       </div>
     </div>
     )
