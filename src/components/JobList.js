@@ -61,6 +61,7 @@ const JobList = () => {
                     {!loading && (    
                     <tbody>
                         {jobs.map((job)=>(
+                            
                         <tr key={job.id}>
                             <td className="text-left px-6 py-4 whitespace-nowrap">{job.id}</td>
                             <td className="text-left px-6 py-4 whitespace-nowrap">{job.company}</td>

@@ -20,7 +20,7 @@ const Addjob = () => {
         JobService.saveJob(job)
             .then((response)=>{
                 console.log(response);
-                navigate("/");
+                navigate("/joblist");
             })
             .catch((error)=>{
             console.log(error);
@@ -37,10 +37,10 @@ const Addjob = () => {
         });
     }
     return (
-        <div className="flex max-w-2xl mx-auto shadow border-b">
+        <div className="flex max-w-2xl justify-center mx-auto shadow border-b">
             <div className="px-8 py-8">
-                <div className="text-2xl tracking-wider">
-                    <h1>Add new job</h1>
+                <div className="text-2xl text-center tracking-wider">
+                    <h1 className="text-4xl text-gray-800 font-black">Add new job</h1>
                 </div>
                 <div className="items-center justify-center h-14 w-full my-4">
                     <label className="block text-gray-600 text-sm">Id</label>
